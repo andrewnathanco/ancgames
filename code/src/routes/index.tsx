@@ -87,7 +87,9 @@ function GameCard(props: { game: Game; class: any }) {
       class={`flex space-x-4 items-center border-2 rounded-lg p-2 border-wine-900 hover:cursor-pointer hover:bg-${
         props.game.color ?? "bg-manhattan-300"
       }`}
-      href={props.game.link}
+      onclick={() => {
+        window.location.href = `https://ancgames.com${props.game.link}`;
+      }}
     >
       <div class="w-16 h-16">
         <img src={props.game.icon} />
