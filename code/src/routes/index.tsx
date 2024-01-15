@@ -101,9 +101,9 @@ function GameCard(props: { game: Game; class: any }) {
         window.location.href = `https://ancgames.com${props.game.link}`;
       }}
     >
-      <div class="w-16 h-16">
+      {/* <div class="w-16 h-16">
         <img src={props.game.icon} />
-      </div>
+      </div> */}
       <div class="">
         <div class="text-2xl">{props.game.name}</div>
         <div>{props.game.description}</div>
