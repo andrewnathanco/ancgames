@@ -85,6 +85,16 @@ const App: Component = () => {
               color: "cotton-300",
             }}
           />
+          <GameCard
+            class="hover:bg-dove-200"
+            game={{
+              name: "splotch",
+              icon: "/svg/splotch.svg",
+              link: "/splocth",
+              description: "find the ingredients for the color",
+              color: "dove-200",
+            }}
+          />
         </div>
       </div>
     </>
