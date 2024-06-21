@@ -1,5 +1,4 @@
 import { Signal, createEffect, createSignal } from "solid-js";
-import { SetStoreFunction, Store, createStore } from "solid-js/store";
 
 export function createStoredSignal<T extends object>(
   name: string,

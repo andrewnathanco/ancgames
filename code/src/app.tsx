@@ -1,23 +1,24 @@
-// @refresh reload
 import { Router } from "@solidjs/router";
-import { MetaProvider } from "@solidjs/meta";
-import { FileRoutes } from "@solidjs/start";
+import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import "./app.css";
+import { Meta, MetaProvider, Title } from "@solidjs/meta";
 
 export default function App() {
   return (
-    <MetaProvider>
-      <Router
-        base={import.meta.env.SERVER_BASE_URL}
-        root={(props) => (
-          <>
+    <Router
+      base={import.meta.env.SERVER_BASE_URL}
+      root={(props) => (
+        <>
+          <MetaProvider>
+            <Title>Splotch</Title>
+            <Meta name="description" content=""></Meta>
             <Suspense>{props.children}</Suspense>
-          </>
-        )}
-      >
-        <FileRoutes />
-      </Router>
-    </MetaProvider>
+          </MetaProvider>
+        </>
+      )}
+    >
+      <FileRoutes />
+    </Router>
   );
 }

@@ -1,31 +1,23 @@
 {
-  "name": "ancgames",
+  "name": "example-with-tailwindcss",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "dev:host": "vinxi dev --host 10.0.0.42",
     "build": "vinxi build",
     "start": "vinxi start"
   },
   "dependencies": {
-    "@solid-primitives/storage": "^2.1.1",
-    "@solidjs/meta": "^0.29.3",
-    "@solidjs/router": "^0.10.6",
-    "@solidjs/start": "^0.4.2",
-    "@vitejs/plugin-basic-ssl": "^1.0.2",
-    "autoprefixer": "^10.4.14",
-    "csv-parse": "^5.5.2",
-    "postcss": "^8.4.26",
-    "solid-js": "^1.8.7",
-    "tailwindcss": "^3.3.3",
-    "vinxi": "0.1.1"
+    "@solid-primitives/storage": "^3.7.1",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.13.6",
+    "@solidjs/start": "^1.0.2",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "solid-js": "^1.8.17",
+    "tailwindcss": "^3.4.3",
+    "vinxi": "^0.3.12"
   },
   "engines": {
     "node": ">=18"
-  },
-  "pnpm": {
-    "overrides": {
-      "rollup": "npm:@rollup/wasm-node"
-    }
   }
 }
