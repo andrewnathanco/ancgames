@@ -11,8 +11,13 @@ export default function App() {
       root={(props) => (
         <>
           <MetaProvider>
-            <Title>Splotch</Title>
-            <Meta name="description" content=""></Meta>
+            <Title>ANC Games</Title>
+            <Meta name="description" content="Daily puzzles" />
+            <Meta
+              name="keywords"
+              content="ANCGames, daily puzzles, puzzle games, brain games, online puzzles, daily challenge, wordle, nytgames, the crossword, nyt, anc"
+            />
+            <Meta name="author" content="Andrew Cohen" />
             <Suspense>{props.children}</Suspense>
           </MetaProvider>
         </>
