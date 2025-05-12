@@ -1,34 +1,9 @@
 import { Meta } from "@solidjs/meta";
-import { Theme, ThemeToggler, getTheme } from "../util/theme";
 import { JSXElement, createSignal } from "solid-js";
 import { DocumentIcon, MovieIcon, StarIcon } from "../util/icons";
-import games from "../util/games.json";
-import { Game } from "../util/gameinfo";
-import { c } from "vinxi/dist/types/lib/logger";
-
-interface GameCategory {
-  name: string;
-  icon: JSXElement;
-}
-
-const gamerows: GameCategory[] = [
-  {
-    name: "new",
-    icon: <StarIcon />,
-  },
-  {
-    name: "words",
-    icon: <DocumentIcon />,
-  },
-  {
-    name: "movies",
-    icon: <MovieIcon />,
-  },
-];
+import { Game, games } from "../models/game";
 
 export default function Home() {
-  const [theme, setTheme] = createSignal(getTheme());
-
   return (
     <>
       <Meta
@@ -38,50 +13,14 @@ export default function Home() {
       <div class="relative flex flex-col space-y-6 p-8 max-w-128 h-full">
         <div class="flex flex-col space-y-2 w-fit">
           <div class="flex justify-between items-center">
-            <div class="text-4xl">anc games</div>
-            <ThemeToggler theme={[theme, setTheme]} />
+            <div class="text-4xl font-bold">anc games</div>
           </div>
           <Description />
         </div>
 
-        <ul class="flex flex-col space-y-2 rounded-lg justify-center -m-4">
-          {gamerows.map((row) => {
-            return (
-              <li class="flex flex-col space-y-2 dark:bg-burst-900 bg-manhattan-200 p-2 rounded-xl">
-                <div class="flex space-x-2 rounded-xl px-2 py-1 dark:bg-burst-800 bg-manhattan-400 text-lg items-center">
-                  {row.icon}
-                  <div>{row.name}</div>
-                </div>
-                <ul class="flex space-x-2 ">
-                  {games
-                    .filter(
-                      (game) =>
-                        game.category.toLowerCase() == row.name.toLowerCase()
-                    )
-                    ?.map((game) => {
-                      return (
-                        <li
-                          class="active:shrink-sm hover:cursor-pointer rounded-xl flex justify-center items-end space-x-4 p-2 dark:text-gray-200 text-manhattan-100"
-                          style={{
-                            "background-color":
-                              theme() == Theme.DARK
-                                ? game.colors.background.dark
-                                : game.colors.background.light,
-                          }}
-                          onclick={() => {
-                            window.location.href = `https://ancgames.com${game.endpoint}`;
-                          }}
-                        >
-                          <div>
-                            <div class="text-2xl">{game.name}</div>
-                            <div class="text-xs">{game.description}</div>
-                          </div>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </li>
-            );
+        <ul class="flex flex-col space-y-2 rounded-lg">
+          {games?.map((game) => {
+            return <GameCard game={game} />;
           })}
         </ul>
       </div>
@@ -89,12 +28,54 @@ export default function Home() {
   );
 }
 
+function GameCard(props: { game: Game }) {
+  return (
+    <li
+      class="active:shrink-sm hover:cursor-pointer rounded-xl flex space-x-4 p-4 border-2 bg-manhattan-50"
+      style={{
+        "border-color": props.game.colors.background,
+        color: props.game.colors.background,
+      }}
+      onclick={() => {
+        window.location.href = `https://ancgames.com${props.game.endpoint}`;
+      }}
+    >
+      <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-1">
+          <div class="text-2xl">{props.game.name}</div>
+          <div class="text-xs">{props.game.description}</div>
+        </div>
+        <div class="flex flex-row gap-2">
+          {props.game.tags?.map((tag) => {
+            switch (tag) {
+              case "words":
+                return <TagChip tag={tag} />;
+              case "movies":
+                return <TagChip tag={tag} />;
+              default:
+                return <TagChip tag={tag} />;
+            }
+          })}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function TagChip(props: { tag: string }) {
+  return (
+    <div class="text-xs bg-manhattan-100 rounded-full px-2 py-1 flex flex-row gap-2 items-center">
+      {props.tag}
+    </div>
+  );
+}
+
 function Description() {
   return (
-    <div class="text-lg">
+    <div class="text-lg font-normal">
       my name is{" "}
       <a
-        href="https://www.threads.net/@andrewnathanco"
+        href="https://bsky.app/profile/ancgames.com"
         target="_blank"
         rel="noopener noreferrer"
         class="underline"

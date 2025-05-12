@@ -3,6 +3,7 @@ import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import "./app.css";
 import { Meta, MetaProvider, Title } from "@solidjs/meta";
+import { Footer } from "./routes/components/footer";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Meta name="author" content="Andrew Cohen" />
             <Suspense>{props.children}</Suspense>
           </MetaProvider>
+          <Footer />
         </>
       )}
     >
