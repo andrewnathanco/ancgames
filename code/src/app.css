@@ -7,18 +7,18 @@
 html,
 body,
 #app {
-  @apply h-full font-semibold w-full bg-manhattan-100 text-burst-950 dark:text-manhattan-50 dark:bg-burst-950;
+  @apply font-semibold w-full bg-manhattan-100 text-burst-950 dark:text-manhattan-50 dark:bg-burst-950;
   font-family: "Kumbh Sans", sans-serif;
   touch-action: manipulation;
 }
 
 #app {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center p-8;
 }
 
 @layer utilities {
   .shrink-sm {
-    transform: scale(0.9);
+    transform: scale(0.98);
   }
 
   .shrink-md {
