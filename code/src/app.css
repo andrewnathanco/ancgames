@@ -13,7 +13,7 @@ body,
 }
 
 #app {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center p-8;
 }
 
 @layer utilities {

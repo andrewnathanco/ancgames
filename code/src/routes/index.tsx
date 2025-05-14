@@ -10,15 +10,15 @@ export default function Home() {
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0"
       />
-      <div class="relative flex flex-col space-y-6 p-8 max-w-128 h-full">
+      <div class="relative flex flex-col space-y-6 max-w-128 h-full">
         <div class="flex flex-col space-y-2 w-fit">
           <div class="flex justify-between items-center">
-            <div class="text-4xl font-bold">anc games</div>
+            <div class="text-4xl font-bold">ANC Games</div>
           </div>
           <Description />
         </div>
 
-        <ul class="flex flex-col space-y-2 rounded-lg">
+        <ul class="grid grid-cols-2 gap-2 rounded-lg">
           {games?.map((game) => {
             return <GameCard game={game} />;
           })}
@@ -31,7 +31,7 @@ export default function Home() {
 function GameCard(props: { game: Game }) {
   return (
     <li
-      class="active:shrink-sm hover:cursor-pointer rounded-xl flex space-x-4 p-4 border-2 bg-manhattan-50"
+      class="active:shrink-sm hover:cursor-pointer rounded-xl flex flex-col gap-4 p-4 border-2 bg-manhattan-50"
       style={{
         "border-color": props.game.colors.background,
         color: props.game.colors.background,
@@ -41,22 +41,31 @@ function GameCard(props: { game: Game }) {
       }}
     >
       <div class="flex flex-col space-y-2">
-        <div class="flex flex-col space-y-1">
-          <div class="text-2xl">{props.game.name}</div>
-          <div class="text-xs">{props.game.description}</div>
+        <div class="text-2xl">{props.game.name}</div>
+        <div class="text-xs">{props.game.description}</div>
+      </div>
+      {props.game.image && (
+        <div class="flex flex-col space-y-2 w-full items-center">
+          <div class="flex flex-col space-y-2 w-full items-center">
+            <img
+              src={props.game.image}
+              alt={props.game.name}
+              class="w-36 h-36 object-cover rounded-md"
+            />
+          </div>
         </div>
-        <div class="flex flex-row gap-2">
-          {props.game.tags?.map((tag) => {
-            switch (tag) {
-              case "words":
-                return <TagChip tag={tag} />;
-              case "movies":
-                return <TagChip tag={tag} />;
-              default:
-                return <TagChip tag={tag} />;
-            }
-          })}
-        </div>
+      )}
+      <div class="flex flex-row gap-2">
+        {props.game.tags?.map((tag) => {
+          switch (tag) {
+            case "words":
+              return <TagChip tag={tag} />;
+            case "movies":
+              return <TagChip tag={tag} />;
+            default:
+              return <TagChip tag={tag} />;
+          }
+        })}
       </div>
     </li>
   );
@@ -73,21 +82,8 @@ function TagChip(props: { tag: string }) {
 function Description() {
   return (
     <div class="text-lg font-normal">
-      my name is{" "}
-      <a
-        href="https://bsky.app/profile/ancgames.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline"
-      >
-        andrew
-      </a>{" "}
-      and i make simple, daily games. if you enjoy please share with your
-      friends.{" "}
-      <a class="underline" href="mailto:cohen.andrew.n+ancgames@gmail.com">
-        email
-      </a>{" "}
-      me if you have suggestions or have an idea for a game.
+      My name is Andrew and I make simple, daily games. If you enjoy please
+      share with your friends.
     </div>
   );
 }
